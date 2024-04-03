@@ -3,6 +3,8 @@ package main.model;
 
 import java.util.List;
 
+import javax.print.attribute.standard.Destination;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,12 +24,12 @@ import lombok.NoArgsConstructor;
 public class Trip {
 	@Id
 	@GeneratedValue
-	int tripId;
+	Long tripId;
 	String title;
 	List <Destination> destination;
 	List <Person> person;
 	List <CarRental> carRental;
-	List <Lodging> lodging;
+//	List <Lodging> lodging;
 	List <Flights> flights;
 	int numGuests;
 	double totalPrice;
