@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Trip {
 	@Id
 	@GeneratedValue
@@ -30,31 +32,5 @@ public class Trip {
 	int numGuests;
 	double totalPrice;
 
-	public Trip(String title, List<Destination> destination, int numGuests) {
-		super();
-		this.title = title;
-		this.destination = destination;
-		this.numGuests = numGuests;
-	}
-	
-	public Trip(String title, List<Destination> destination) {
-		super();
-		this.title = title;
-		this.destination = destination;
-	}
-	
-	public Trip(String title, int numGuests) {
-		super();
-		this.title = title;
-		this.numGuests = numGuests;
-	}
-	
-	public Trip(String title) {
-		super();
-		this.title = title;
-	}
-	
-	
-	
 	
 }
