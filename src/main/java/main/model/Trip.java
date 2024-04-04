@@ -22,15 +22,15 @@ import lombok.NoArgsConstructor;
 public class Trip {
 	@Id
 	@GeneratedValue
-	int tripId;
-	String title;
-	List <Destination> destination;
-	List <Person> person;
-	List <CarRental> carRental;
-	List <Lodging> lodging;
-	List <Flights> flights;
-	int numGuests;
-	double totalPrice;
+	private int tripId;
+	private String title;
+	private List <Destination> destination;
+	private List <Person> person;
+	private List <CarRental> carRental;
+	private List <Lodging> lodging;
+	private List <Flights> flights;
+	private int numGuests;
+	private double totalPrice;
 
 	
 }
