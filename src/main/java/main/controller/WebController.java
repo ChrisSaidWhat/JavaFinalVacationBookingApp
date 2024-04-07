@@ -23,15 +23,22 @@ public class WebController {
 	
 	@GetMapping("/viewAll")
 	public String viewAllBookings(Model model) {
-		return null;
+		if(repo.findAll().isEmpty()) {
+			return addNewBooking(model);
+		}
+		
+		model.addAttribute("bookings", repo.findAll());
+		return "viewAll";
 	}
 	
-	@GetMapping("/inputBooking")
+	@GetMapping("/tripDetails")
 	public String addNewBooking(Model model) {
-		return null;
+		Trip trip = new Trip();
+		model.addAttribute("newTrip", trip);
+		return "tripDetails";
 	}
 	
-	@PostMapping("/inputBooking")
+	@PostMapping("/tripDetails")
 	public String addNewBooking(@ModelAttribute Trip trip, Model model) {
 		return null;
 	}
