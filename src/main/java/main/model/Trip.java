@@ -8,6 +8,7 @@ import javax.print.attribute.standard.Destination;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,9 @@ public class Trip {
 	@GeneratedValue
 	private Long tripId;
 	private String title;
-	private List <Person> person;
 	private Destination destination;
+	@ManyToOne
+	private List<Person> person;
 	private LocalDate leaveDate;
 	private LocalDate returnDate;
 	private CarRental carRental;
