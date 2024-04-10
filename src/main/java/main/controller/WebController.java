@@ -45,16 +45,25 @@ public class WebController {
 	
 	@GetMapping("/editDestination{id}")
 	public String showUpdateDestination(@PathVariable("id") long id, Model model) {
-		return null;
+		Trip destination = repo.findById(id).orElse(null);
+		System.out.println("ITEM TO EDIT: " + destination.toString());
+		model.addAttribute("newDestination", destination);
+		return "input";
 	}
 	@GetMapping("/editLodging{id}")
 	public String showUpdateLodging(@PathVariable("id") long id, Model model) {
-		return null;
+		Trip lodging = repo.findById(id).orElse(null);
+		System.out.println("ITEM TO EDIT: " + lodging.toString());
+		model.addAttribute("newLodging", lodging);
+		return "input";
 	}
 	
 	@GetMapping("/editRental{id}")
 	public String showUpdateRental(@PathVariable("id") long id, Model model) {
-		return null;
+		Trip rental = repo.findById(id).orElse(null);
+		System.out.println("ITEM TO EDIT: " + rental.toString());
+		model.addAttribute("newRental", rental);
+		return "input";
 	}
 	
 	@PostMapping("/update/{id}")
