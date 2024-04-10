@@ -1,5 +1,7 @@
 package main.controller;
 
+import javax.print.attribute.standard.Destination;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,11 +42,32 @@ public class WebController {
 	
 	@PostMapping("/tripDetails")
 	public String addNewBooking(@ModelAttribute Trip trip, Model model) {
-		return null;
+		repo.save(trip);
+		//or move on to next step of trip planning process
+		//return addDestination(model);
+		return viewAllBookings(model);	
 	}
+	
+	/*
+	 * @GetMapping("/inputDestination") 
+	 * public String addDestination(Model model) {
+	 * 
+	 * return null; }
+	 * 
+	 * 
+	 * 
+	 * @GetMapping("/inputDestination") 
+	 * public String addDestination(@ModelAttribute Destination destination, Model model) { 
+	 * 
+	 * //return addFlight(model); 
+	 * return null;
+	 * 
+	 *  }
+	 */
 	
 	@GetMapping("/editDestination{id}")
 	public String showUpdateDestination(@PathVariable("id") long id, Model model) {
+		
 		return null;
 	}
 	@GetMapping("/editLodging{id}")
@@ -54,6 +77,7 @@ public class WebController {
 	
 	@GetMapping("/editRental{id}")
 	public String showUpdateRental(@PathVariable("id") long id, Model model) {
+		
 		return null;
 	}
 	

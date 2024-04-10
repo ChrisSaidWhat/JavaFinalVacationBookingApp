@@ -2,7 +2,7 @@ package main.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
  * CIS175 - Spring 2024
  * Apr 2, 2024
  */
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
