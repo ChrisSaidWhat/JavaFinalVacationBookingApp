@@ -59,12 +59,20 @@ public class WebController {
 	
 	@PostMapping("/update/{id}")
 	public String reviseBooking(Trip trip, Model model) {
-		return null;
+		//need to un-reserve dates/times for CarRental/Flights/Lodging and change the reserve dates
+		//if they want to change a CarRental/Flights/Lodging
+			//go into each individually-unreserve and then choose new dates?
+		
+		repo.save(trip);
+		return viewAllBookings(model);
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteTrip(@PathVariable("id") long id, Model model) {
-		return null;
+		Trip trip = repo.findById(id).orElse(null);
+		//need to un-reserve dates/times for CarRental/Flights/Lodging
+		repo.delete(trip);
+		return viewAllBookings(model);
 	}
 	
 }

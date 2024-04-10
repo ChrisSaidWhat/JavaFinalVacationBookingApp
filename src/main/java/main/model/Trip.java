@@ -1,7 +1,6 @@
 package main.model;
 
-
-import java.util.List;
+import java.time.LocalDate;
 
 import javax.print.attribute.standard.Destination;
 
@@ -26,11 +25,15 @@ public class Trip {
 	@GeneratedValue
 	private Long tripId;
 	private String title;
-	private List <Destination> destination;
-	private List <Person> person;
-	private List <CarRental> carRental;
-  private List <Lodging> lodging;
-	private List <Flights> flights;
+	private Destination destination;
+	private Person person;
+	private LocalDate leaveDate;
+	private LocalDate returnDate;
+	private CarRental carRental;
+	private Lodging lodging;
+	private Flights flights;
 	private int numGuests;
 	private double totalPrice;
+	
+	
 }
