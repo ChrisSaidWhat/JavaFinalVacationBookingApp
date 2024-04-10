@@ -29,7 +29,7 @@ public class Trip {
 	private List <Destination> destination;
 	private List <Person> person;
 	private List <CarRental> carRental;
-  private List <Lodging> lodging;
+	private List <Lodging> lodging;
 	private List <Flights> flights;
 	private int numGuests;
 	private double totalPrice;

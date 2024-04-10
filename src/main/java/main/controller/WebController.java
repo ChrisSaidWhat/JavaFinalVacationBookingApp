@@ -38,28 +38,30 @@ public class WebController {
 		return "tripDetails";
 	}
 	
-	@PostMapping("/tripDetails")
-	public String addNewBooking(@ModelAttribute Trip trip, Model model) {
-		return null;
-	}
+//	@PostMapping("/tripDetails")
+//	public String addNewBooking(@ModelAttribute Trip trip, Model model) {
+//		repo.save(trip);
+//		return "tripDetails";
+//	}
 	
-	@GetMapping("/editDestination{id}")
-	public String showUpdateDestination(@PathVariable("id") long id, Model model) {
-		return null;
-	}
-	@GetMapping("/editLodging{id}")
-	public String showUpdateLodging(@PathVariable("id") long id, Model model) {
-		return null;
-	}
-	
-	@GetMapping("/editRental{id}")
-	public String showUpdateRental(@PathVariable("id") long id, Model model) {
-		return null;
-	}
+//	@GetMapping("/editDestination{id}")
+//	public String showUpdateDestination(@PathVariable("id") long id, Model model) {
+//		return null;
+//	}
+//	@GetMapping("/editLodging{id}")
+//	public String showUpdateLodging(@PathVariable("id") long id, Model model) {
+//		return null;
+//	}
+//	
+//	@GetMapping("/editRental{id}")
+//	public String showUpdateRental(@PathVariable("id") long id, Model model) {
+//		return null;
+//	}
 	
 	@PostMapping("/update/{id}")
 	public String reviseBooking(Trip trip, Model model) {
-		return null;
+		repo.save(trip);
+		return "tripDetails";
 	}
 	
 	@GetMapping("/delete/{id}")

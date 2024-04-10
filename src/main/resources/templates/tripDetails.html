@@ -29,7 +29,7 @@
                             <span class="input-group-text">@</span>
                             <div class="form-floating">
                                 <input class="form-control" id="tripTitle" placeholder="Title"
-                                       type="text" name="tripTitle">
+                                       type="text" name="tripTitle" th:field="*{title}">
                                 <label for="tripTitle">Title Of Trip</label>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <span class="input-group-text">@</span>
                             <div class="form-floating">
                                 <input class="form-control" id="tripNumPeople" placeholder="Number Of People"
-                                       type="number" name="tripNumPeople">
+                                       type="number" name="tripNumPeople" th:field="numGuests">
                                 <label for="tripNumPeople">Number Of People</label>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <span class="input-group-text">$</span>
                             <div class="form-floating">
                                 <input aria-label="Amount (to the nearest dollar)" class="form-control" id="tripRate"
-                                       readonly type="text" name="tripRate">
+                                       readonly type="text" name="tripRate" th:field="totalPrice">
                                 <label for="tripRate">Total Price</label>
                             </div>
                             <span class="input-group-text">.00</span>
