@@ -8,8 +8,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-/**
+/*
  * Maya Cruz - Gcruz
  * CIS175 - Spring 2024
  * Apr 4, 2024
@@ -19,12 +18,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lodging {
-	
 	@Id
 	@GeneratedValue
 	private int lodgingId;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private LocalDate checkInDate;
+	private LocalDate checkOutDate;
 	private String name;
 	private String type;
 	private double rate;
@@ -33,5 +31,6 @@ public class Lodging {
 	private String city;
 	private String state;
 	private String zip;
+
 
 }

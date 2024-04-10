@@ -43,7 +43,6 @@ public class WebController {
 //		repo.save(trip);
 //		return "tripDetails";
 //	}
-	
 //	@GetMapping("/editDestination{id}")
 //	public String showUpdateDestination(@PathVariable("id") long id, Model model) {
 //		return null;
@@ -57,16 +56,46 @@ public class WebController {
 //	public String showUpdateRental(@PathVariable("id") long id, Model model) {
 //		return null;
 //	}
+
+	@GetMapping("/editDestination{id}")
+	public String showUpdateDestination(@PathVariable("id") long id, Model model) {
+		Trip destination = repo.findById(id).orElse(null);
+		System.out.println("ITEM TO EDIT: " + destination.toString());
+		model.addAttribute("newDestination", destination);
+		return "input";
+	}
+	@GetMapping("/editLodging{id}")
+	public String showUpdateLodging(@PathVariable("id") long id, Model model) {
+		Trip lodging = repo.findById(id).orElse(null);
+		System.out.println("ITEM TO EDIT: " + lodging.toString());
+		model.addAttribute("newLodging", lodging);
+		return "input";
+	}
+	
+	@GetMapping("/editRental{id}")
+	public String showUpdateRental(@PathVariable("id") long id, Model model) {
+		Trip rental = repo.findById(id).orElse(null);
+		System.out.println("ITEM TO EDIT: " + rental.toString());
+		model.addAttribute("newRental", rental);
+		return "input";
+	}
 	
 	@PostMapping("/update/{id}")
 	public String reviseBooking(Trip trip, Model model) {
+		//need to un-reserve dates/times for CarRental/Flights/Lodging and change the reserve dates
+		//if they want to change a CarRental/Flights/Lodging
+			//go into each individually-unreserve and then choose new dates?
+		
 		repo.save(trip);
-		return "tripDetails";
+		return viewAllBookings(model);
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteTrip(@PathVariable("id") long id, Model model) {
-		return null;
+		Trip trip = repo.findById(id).orElse(null);
+		//need to un-reserve dates/times for CarRental/Flights/Lodging
+		repo.delete(trip);
+		return viewAllBookings(model);
 	}
 	
 }
