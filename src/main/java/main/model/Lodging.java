@@ -9,10 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author Misti Christianson - mchristianson
+ * Maya Cruz - Gcruz
  * CIS175 - Spring 2024
- * Apr 10, 2024
+ * Apr 4, 2024
  */
 @Entity
 @Data
@@ -22,14 +21,16 @@ public class Lodging {
 	@Id
 	@GeneratedValue
 	private int lodgingId;
-	private String lodgingName;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
-	private String lodgingType;
+	private String name;
+	private String type;
+	private double rate;
 	private int maxCapacity;
 	private String address;
 	private String city;
 	private String state;
 	private String zip;
-	private double rate;
+
+
 }
