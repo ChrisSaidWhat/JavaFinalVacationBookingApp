@@ -14,7 +14,7 @@
 	<nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <h1 class="h1">
-                    <a class="navbar-brand align-content-center" href="#">
+                    <a class="navbar-brand align-content-center" href="/index.html">
                         Adventure Travel
                     </a>
                 </h1>
@@ -25,6 +25,12 @@
 		<h1 class="h1">Trip Summary</h1>
 		<div id="tripDetails"  th:object="${}">
 	<!-- List Trip Details -->
+			<div class="row"><h2 class="h2">th:text="${}"</h2></div>
+			<div class="row">
+				<div class="col">
+					<label>Leave Date: </label>
+				</div>
+			</div>
 		
 	
 	<!-- List Travelers  -->
