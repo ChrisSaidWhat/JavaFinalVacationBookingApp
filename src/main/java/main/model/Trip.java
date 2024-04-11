@@ -38,5 +38,22 @@ public class Trip {
 	private int numGuests;
 	private double totalPrice;
 	
+	//setting the totalPrice-initiating the empty method for now/pull in rates from flights, lodging, carRental
+	public double setTotalPrice() {
+		//Flights.rate * numGuests
+		double flightTotalPrice = 0;
+		
+		//additional for first class (+100*numGuests)?
+		
+		//Lodging rate per night (checkOutDate-checkInDate)
+		double lodgingTotalPrice = 0;
+		
+		//carRental rate per day (dropOffDate-pickUpDate
+		double carRentalTotalPrice = 0;
+		
+		totalPrice = flightTotalPrice + lodgingTotalPrice + carRentalTotalPrice;
+		return totalPrice;
+	}
+	
 	
 }
