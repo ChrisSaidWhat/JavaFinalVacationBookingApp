@@ -1,5 +1,8 @@
 package main.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.print.attribute.standard.Destination;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import main.model.Trip;
 import main.repository.TravelRepository;
-
 /**
  * @author Misti Christianson - mchristianson
  * CIS175 - Spring 2024
@@ -124,4 +127,22 @@ public class WebController {
 		return viewAllBookings(model);
 	}
 	
+	//Added info to grab trip details from the database
+	@GetMapping("/trip")
+    public Trip getTripById(@RequestParam Long id) {
+        Optional<Trip> optionalTrip = repo.findById(id);
+        return optionalTrip.orElse(null); // Return null if not found
+    }
+
+    @GetMapping("/trips")
+    public List<Trip> getAllTrips() {
+        return repo.findAll();
+    }
+
+    @GetMapping("/trips/destination")
+    public List<Trip> getTripsByDestination(@RequestParam String destination) {
+        return repo.findByDestination(destination);
+    }
+	
 }
+
