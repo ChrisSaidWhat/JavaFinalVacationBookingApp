@@ -3,12 +3,13 @@ package main.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.print.attribute.standard.Destination;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,13 +28,17 @@ public class Trip {
 	@GeneratedValue
 	private Long tripId;
 	private String title;
-	private Destination destination;
 	@ManyToOne
+	private Destination destination;
+	@OneToMany
 	private List<Person> person;
 	private LocalDate leaveDate;
 	private LocalDate returnDate;
+	@ManyToOne
 	private CarRental carRental;
+	@ManyToOne
 	private Lodging lodging;
+	@ManyToOne
 	private Flights flights;
 	private int numGuests;
 	private double totalPrice;
