@@ -1,11 +1,14 @@
 package main.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,13 +17,13 @@ import lombok.NoArgsConstructor;
  * CIS175 - Spring 2024
  * Apr 4, 2024
  */
-@Embeddable
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lodging {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int lodgingId;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
@@ -32,6 +35,8 @@ public class Lodging {
 	private String city;
 	private String state;
 	private String zip;
+	@OneToMany
+	private List<Trip> trip;
 
 
 }
