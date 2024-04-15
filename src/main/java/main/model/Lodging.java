@@ -17,26 +17,28 @@ import lombok.NoArgsConstructor;
  * CIS175 - Spring 2024
  * Apr 4, 2024
  */
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lodging {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	//	needed to make the fields have unique names for an embedded class - CS 04/13
 	private int lodgingId;
 	private LocalDate checkInDate;
 	private LocalDate checkOutDate;
-	private String name;
-	private String type;
-	private double rate;
+	private String lodgingName;
+	private String lodgingType;
+	private double lodgingRate;
 	private int maxCapacity;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
-	@OneToMany
-	private List<Trip> trip;
+	private String lodgingAddress;
+	private String lodgingCity;
+	private String lodgingState;
+	private String lodgingZip;
+	private String lodgingCountry;
+	private String lodgingRewardsNo;
+//	@OneToMany
+//	private List<Trip> tripLodging;
 
 
 }

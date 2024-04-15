@@ -26,7 +26,8 @@ public class WebController {
 	@Autowired
 	TravelRepository repo;
 	
-	@GetMapping("/viewAll")
+	//	the fix in the line below allows us to not have to use an index.html file - CS 04/13
+	@GetMapping({"/", "/viewAll"})
 	public String viewAllBookings(Model model) {
 		if(repo.findAll().isEmpty()) {
 			return addNewBooking(model);
@@ -139,10 +140,12 @@ public class WebController {
         return repo.findAll();
     }
 
-    @GetMapping("/trips/destination")
-    public List<Trip> getTripsByDestination(@RequestParam String destination) {
-        return repo.findByDestination(destination);
-    }
+//	this along with its accompanying method in the travel repo broke my code so I have commented it out - CS 04/13
+    
+//    @GetMapping("/trips/destination")
+//    public List<Trip> getTripsByDestination(@RequestParam String destination) {
+//        return repo.findByDestination(destination);
+//    }
 	
 }
 

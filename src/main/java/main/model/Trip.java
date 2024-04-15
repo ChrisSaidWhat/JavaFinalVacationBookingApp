@@ -3,8 +3,9 @@ package main.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
-
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,23 +23,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Trip {
 	@Id
 	@GeneratedValue
 	private Long tripId;
 	private String title;
-	@ManyToOne
+	@Embedded
 	private Destination destination;
 	@OneToMany
 	private List<Person> person;
-	private LocalDate leaveDate;
-	private LocalDate returnDate;
-	@ManyToOne
+	//	these do not appear on the form - CS 04/13
+//	private LocalDate leaveDate;
+//	private LocalDate returnDate;
+	@Embedded
 	private CarRental carRental;
-	@ManyToOne
+	@Embedded
 	private Lodging lodging;
-	@ManyToOne
+	@Embedded
 	private Flights flights;
 	private int numGuests;
 	private double totalPrice;

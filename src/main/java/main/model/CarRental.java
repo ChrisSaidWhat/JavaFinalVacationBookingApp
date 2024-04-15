@@ -19,20 +19,18 @@ import lombok.NoArgsConstructor;
  * CIS175 - Spring 2024
  * Apr 2, 2024
  */
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CarRental {
 	
 	//	fields
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int rentalId;
 	private LocalDate pickUpDate;
 	private LocalDate dropOffDate;
 	private String model;
-	private double rate;
-	@OneToMany
-	private List<Trip> trips;
+	private double carRentalRate;
+//	@OneToMany
+//	private List<Trip> trips;
 }

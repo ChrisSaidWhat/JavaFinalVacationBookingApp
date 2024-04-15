@@ -16,10 +16,12 @@ import main.model.Trip;
 @Repository
 public interface TravelRepository extends JpaRepository <Trip, Long> {
 
-	/**
-	 * @param destination
-	 * @return
-	 */
-	List<Trip> findByDestination(String destination);
+	//	this along with its accompanying method in the web controller broke my code so I have commented it out - CS 04/13
+	
+//	/**
+//	 * @param destination
+//	 * @return
+//	 */
+//	List<Trip> findByDestination(String destination);
 
 }

@@ -18,21 +18,19 @@ import lombok.NoArgsConstructor;
  * Apr 4, 2024
  */
 
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Destination {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int destinationId;
-	private String name;
-	private String type;
-	private String city;
-	private String state;
-	private String country;
-	@OneToMany
-	private List<Trip> trips;
+	private String destinationName;
+	private String destinationType;
+	private String destinationCity;
+	private String destinationState;
+	private String destinationCountry;
+//	@OneToMany
+//	private List<Trip> trips;
 	
 }

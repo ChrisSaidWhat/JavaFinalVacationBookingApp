@@ -18,15 +18,13 @@ import lombok.NoArgsConstructor;
  * CIS175 - Spring 2024
  * Apr 2, 2024
  */
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Flights {
 
 	//	fields
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int flightId;
 	private String airline;
 	private LocalDateTime departure;
@@ -34,7 +32,7 @@ public class Flights {
 	private String frequentFlyerNo;
 	private int numSeats;
 	private String seatingClass;
-	private double rate;
-	@OneToMany
-	private List<Trip> trips;
+	private double flightRate;
+//	@OneToMany
+//	private List<Trip> trips;
 }
