@@ -1,5 +1,6 @@
 package main.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -24,14 +26,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 //@AllArgsConstructor
-public class Trip {
+public class Trip implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long tripId;
 	private String title;
 	@Embedded
 	private Destination destination;
-	@OneToMany
+	@OneToMany(mappedBy = "guestId")
 	private List<Person> person;
 	//	these do not appear on the form - CS 04/13
 //	private LocalDate leaveDate;
