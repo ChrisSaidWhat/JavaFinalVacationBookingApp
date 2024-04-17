@@ -168,7 +168,7 @@
                             <div class="accordion-body">
                                 <section class="row">
                                     <div class="col">
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-3">
                                             <select aria-label="Floating label select example" class="form-select"
                                                     id="destinationSelect" name="destinationSelect" th:field="*{destination.destinationName}">
                                                 <option selected value="default">Select Your Destination...</option>
@@ -180,12 +180,12 @@
                                         </div>
                                       <!--   <div class="form-floating mb-3">
                                             <input class="form-control-plaintext" id="destinationName"
-                                                   placeholder="Destination" readonly
+                                                   placeholder="Destination"
                                                    type="text" value="Option 1" name="destinationName">
                                             <label for="destinationName">Destination</label>
                                         </div> -->
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="destinationType"
+                                            <input class="form-control" id="destinationType"
                                                    placeholder="Type"
                                                    type="text" value="Type" name="destinationType" th:field="*{destination.destinationType}">
                                             <label for="destinationType">Type</label>
@@ -193,22 +193,21 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="destinationCity"
+                                            <input class="form-control" id="destinationCity"
                                                    placeholder="City"
-                                                   readonly
-                                                   type="text" value="City" name="destinationCity" th:field="*{destination.destinationCity}">
+                                        		       type="text" value="City" name="destinationCity" th:field="*{destination.destinationCity}">
                                             <label for="destinationCity">City</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="destinationState"
+                                            <input class="form-control" id="destinationState"
                                                    placeholder="State"
-                                                   readonly
+                                               
                                                    type="text" value="State" name="destinationState" th:field="*{destination.destinationState}">
                                             <label for="destinationState">State</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="destinationCountry"
-                                                   placeholder="Country" readonly
+                                            <input class="form-control" id="destinationCountry"
+                                                   placeholder="Country"
                                                    type="text" value="Country" name="destinationCountry" th:field="*{destination.destinationCountry}">
                                             <label for="destinationCountry">Country</label>
                                         </div>
@@ -258,7 +257,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-3">
                                             <select aria-label="Floating label select example" class="form-select"
                                                     id="lodgingSelect" name="lodgingSelect" th:field="*{lodging.lodgingName}">
                                                 <option selected value="default">Select Your Lodging...</option>
@@ -270,14 +269,14 @@
                                         </div>
                                         <!-- <div class="form-floating mb-3">
                                             <input class="form-control-plaintext" id="lodgingName"
-                                                   placeholder="Lodging" readonly
+                                                   placeholder="Lodging"
                                                    type="text" value="Option 1" name="lodgingName">
                                             <label for="lodgingName">Lodging</label>
                                         </div> -->
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingType"
+                                            <input class="form-control" id="lodgingType"
                                                    placeholder="Type"
-                                                   readonly
+                                                 
                                                    type="text" value="Type" name="lodgingType" th:field="*{lodging.lodgingType}">
                                             <label for="lodgingType">Type</label>
                                         </div>
@@ -285,51 +284,51 @@
                                             <span class="input-group-text">$</span>
                                             <div class="form-floating">
                                                 <input aria-label="Amount (to the nearest dollar)" class="form-control"
-                                                       id="lodgingRate" readonly
+                                                       id="lodgingRate"
                                                        type="text" name="lodgingRate" th:field="*{lodging.lodgingRate}">
                                                 <label for="lodgingRate">Rate</label>
                                             </div>
                                             <span class="input-group-text">.00</span>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingCapacity"
-                                                   placeholder="Type"
-                                                   readonly
-                                                   type="text" value="Max Capacity" name="lodgingCapacity" th:field="*{lodging.maxCapacity}">
+                                            <input class="form-control" id="lodgingCapacity"
+                                                   placeholder="#"
+                                                  
+                                                   type="number" value="Max Capacity" name="lodgingCapacity" th:field="*{lodging.maxCapacity}">
                                             <label for="lodgingCapacity">Max Capacity</label>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingAddress"
+                                            <input class="form-control" id="lodgingAddress"
                                                    placeholder="Street Address"
-                                                   readonly
+                                                  
                                                    type="text" value="Street Address" name="lodgingAddress" th:field="*{lodging.lodgingAddress}">
                                             <label for="lodgingAddress">Street Address</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingCity"
+                                            <input class="form-control" id="lodgingCity"
                                                    placeholder="City"
-                                                   readonly
+                                                  
                                                    type="text" value="City" name="lodgingCity" th:field="*{lodging.lodgingCity}">
                                             <label for="lodgingCity">City</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingState"
+                                            <input class="form-control" id="lodgingState"
                                                    placeholder="State"
-                                                   readonly
+                                                  
                                                    type="text" value="State" name="lodgingState" th:field="*{lodging.lodgingState}">
                                             <label for="lodgingState">State</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingZip"
-                                                   placeholder="ZIP" readonly
+                                            <input class="form-control" id="lodgingZip"
+                                                   placeholder="ZIP"
                                                    type="text" value="ZIP" name="lodgingZip" th:field="*{lodging.lodgingZip}">
                                             <label for="lodgingZip">ZIP</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control-plaintext" id="lodgingCountry"
-                                                   placeholder="Country" readonly
+                                            <input class="form-control" id="lodgingCountry"
+                                                   placeholder="Country"
                                                    type="text" value="Country" name="lodgingCountry" th:field="*{lodging.lodgingCountry}">
                                             <label for="lodgingCountry">Country</label>
                                         </div>
@@ -385,7 +384,7 @@
                                             <span class="input-group-text">$</span>
                                             <div class="form-floating">
                                                 <input aria-label="Amount (to the nearest dollar)" class="form-control"
-                                                       id="carRentalRate" readonly
+                                                       id="carRentalRate"
                                                        type="text" name="carRentalRate" th:field="*{carRental.carRentalRate}">
                                                 <label for="carRentalRate">Rate</label>
                                             </div>
@@ -468,7 +467,7 @@
                                             <span class="input-group-text">$</span>
                                             <div class="form-floating">
                                                 <input aria-label="Amount (to the nearest dollar)" class="form-control"
-                                                       id="flightRate" readonly
+                                                       id="flightRate"
                                                        type="text" name="flightRate" th:field="*{flights.flightRate}">
                                                 <label for="flightRate">Rate</label>
                                             </div>
