@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
  * Apr 3, 2024
  */
 
- 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
