@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.print.attribute.standard.Destination;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.WebServerException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import main.model.Trip;
 import main.repository.TravelRepository;
+import org.springframework.web.server.ResponseStatusException;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 /**
  * @author Misti Christianson - mchristianson
  * CIS175 - Spring 2024
@@ -119,13 +124,33 @@ public class WebController {
 		repo.save(trip);
 		return viewAllBookings(model);
 	}
+	@PostMapping("/update")
+	public String createBooking(Trip trip, Model model) {
+		return reviseBooking(trip, model);
+	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteTrip(@PathVariable("id") long id, Model model) {
-		Trip trip = repo.findById(id).orElse(null);
-		//need to un-reserve dates/times for CarRental/Flights/Lodging
+	public String deleteTrip(@PathVariable("id") long id) {
+		Trip trip = repo.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find trip %d".formatted(id)));
 		repo.delete(trip);
-		return viewAllBookings(model);
+		return "redirect:/viewAll";
+	}
+
+	@GetMapping("/edit/{id}")
+	public String editTrip(@PathVariable("id") long id, Model model) {
+		Trip trip = repo.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find trip %d".formatted(id)));
+		model.addAttribute("newTrip", trip);
+		return "tripDetails";
+	}
+
+	@GetMapping("/view/{id}")
+	public String viewTrip(@PathVariable("id") long id, Model model) {
+		Trip trip = repo.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find trip %d".formatted(id)));
+		model.addAttribute("trip", trip);
+		return "results";
 	}
 	
 	//Added info to grab trip details from the database

@@ -36,16 +36,17 @@
         </thead>
         <tbody>
         <tr th:each="trip : ${bookings}">
-            <td th:text="${trip.id}"></td>
-            <td th:text="${trip.title}"></td>
-            <td th:text="${trip.destination}"></td>
-            <td th:text="${trip.leaveDate}"></td>
-            <td th:text="${trip.returnDate}"></td>
-            <td th:text="${trip.numGuests}"></td>
-            <td th:text="${trip.totalPrice}"></td>
+            <td th:text="${trip.getTripId()}"></td>
+            <td th:text="${trip.getTitle()}"></td>
+            <td th:text="${trip.getDestination().getDestinationName()}"></td>
+            <td th:text="${trip.getFlights().getArrival()}"></td>
+            <td th:text="${trip.getFlights().getDeparture()}"></td>
+            <td th:text="${trip.getNumGuests()}"></td>
+            <td th:text="${trip.getTotalPrice()}"></td>
             <td>
-                <a th:href="@{/edit/{id}(id=${trip.id})}">Edit</a>
-                <a th:href="@{/delete/{id}(id=${trip.id})}">Delete</a>
+                <a th:href="@{/view/{id}(id=${trip.getTripId()})}">View</a>
+                <a th:href="@{/edit/{id}(id=${trip.getTripId()})}">Edit</a>
+                <a th:href="@{/delete/{id}(id=${trip.getTripId()})}">Delete</a>
             </td>
         </tr>
         </tbody>
