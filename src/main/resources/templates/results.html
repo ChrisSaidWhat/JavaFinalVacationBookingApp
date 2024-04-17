@@ -123,28 +123,28 @@
             <dt class="col-sm-3">Capacity</dt>
             <dd class="col-sm-9" th:text="*{getLodging().getMaxCapacity()}"></dd>
         </dl>
-		<h3>Guests</h3>
-		<th:block th:each="person : ${trip.getPerson()}">
-			<h4 th:text="${person.getFirstName()} ${person.lastName} - ${person.getGuestId()}"></h4>
-			<dl class="row" th:object="${person}">
-				<dt class="col-sm-3">Guest ID</dt>
-				<dd class="col-sm-9" th:text="*{getGuestId()}"></dd>
-				<dt class="col-sm-3">Address</dt>
-				<dd class="col-sm-9" th:text="*{getAddress()}"></dd>
-				<dt class="col-sm-3">Birthday</dt>
-				<dd class="col-sm-9" th:text="*{getBirthday()}"></dd>
-				<dt class="col-sm-3">Email</dt>
-				<dd class="col-sm-9" th:text="*{getEmail()}"></dd>
-				<dt class="col-sm-3">Phone Number</dt>
-				<dd class="col-sm-9" th:text="*{getPhoneNo()}"></dd>
-				<dt class="col-sm-3">City</dt>
-				<dd class="col-sm-9" th:text="*{getCity()}"></dd>
-				<dt class="col-sm-3">State</dt>
-				<dd class="col-sm-9" th:text="*{getState()}"></dd>
-				<dt class="col-sm-3">Zip</dt>
-				<dd class="col-sm-9" th:text="*{getZip()}"></dd>
-			</dl>
-		</th:block>
+        <h3>Guests</h3>
+        <th:block th:each="person : ${trip.getPerson()}">
+            <h4 th:text="${person.getFirstName()} ${person.lastName} - ${person.getGuestId()}"></h4>
+            <dl class="row" th:object="${person}">
+                <dt class="col-sm-3">Guest ID</dt>
+                <dd class="col-sm-9" th:text="*{getGuestId()}"></dd>
+                <dt class="col-sm-3">Address</dt>
+                <dd class="col-sm-9" th:text="*{getAddress()}"></dd>
+                <dt class="col-sm-3">Birthday</dt>
+                <dd class="col-sm-9" th:text="*{getBirthday()}"></dd>
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9" th:text="*{getEmail()}"></dd>
+                <dt class="col-sm-3">Phone Number</dt>
+                <dd class="col-sm-9" th:text="*{getPhoneNo()}"></dd>
+                <dt class="col-sm-3">City</dt>
+                <dd class="col-sm-9" th:text="*{getCity()}"></dd>
+                <dt class="col-sm-3">State</dt>
+                <dd class="col-sm-9" th:text="*{getState()}"></dd>
+                <dt class="col-sm-3">Zip</dt>
+                <dd class="col-sm-9" th:text="*{getZip()}"></dd>
+            </dl>
+        </th:block>
         <!-- List Travelers  -->
 
 
