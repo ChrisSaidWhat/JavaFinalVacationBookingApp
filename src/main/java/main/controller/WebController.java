@@ -124,7 +124,7 @@ public class WebController {
 		repo.save(trip);
 		return viewAllBookings(model);
 	}
-	@PostMapping("/update/")
+	@PostMapping("/update")
 	public String createBooking(Trip trip, Model model) {
 		return reviseBooking(trip, model);
 	}
