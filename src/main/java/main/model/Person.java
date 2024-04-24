@@ -1,6 +1,7 @@
 package main.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class Person {
 	//Attributes
 	@Id
 	@GeneratedValue
-	private int guestId;
+	private Long guestId;
 	private String firstName;
 	private String lastName;
 	private LocalDate birthday;
@@ -32,7 +33,7 @@ public class Person {
 	private String state;
 	private String zip;
 	private int phoneNo;
-	@ManyToOne
-	private Trip trip;
+	@OneToMany(mappedBy="person")
+	private List<Trip> trip;
 
 }

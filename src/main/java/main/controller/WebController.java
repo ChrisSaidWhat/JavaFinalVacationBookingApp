@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import main.model.Person;
 import main.model.Trip;
+import main.repository.DestinationRepository;
+import main.repository.PersonRepository;
 import main.repository.TravelRepository;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,6 +35,12 @@ public class WebController {
 	@Autowired
 	TravelRepository repo;
 	
+	@Autowired
+	DestinationRepository destRepo;
+	
+	@Autowired
+	PersonRepository personRepo;
+	
 	//	the fix in the line below allows us to not have to use an index.html file - CS 04/13
 	@GetMapping({"/", "/viewAll"})
 	public String viewAllBookings(Model model) {
@@ -45,7 +55,9 @@ public class WebController {
 	@GetMapping("/tripDetails")
 	public String addNewBooking(Model model) {
 		Trip trip = new Trip();
+		Person person = new Person();
 		model.addAttribute("newTrip", trip);
+		model.addAttribute("listDestinations", destRepo.findAll());
 		return "tripDetails";
 	}
 	
@@ -122,8 +134,9 @@ public class WebController {
 			//go into each individually-unreserve and then choose new dates?
 		
 		repo.save(trip);
-		return viewAllBookings(model);
+		return "redirect:/viewTrip";
 	}
+
 	@PostMapping("/update")
 	public String createBooking(Trip trip, Model model) {
 		return reviseBooking(trip, model);
@@ -164,8 +177,8 @@ public class WebController {
     public List<Trip> getAllTrips() {
         return repo.findAll();
     }
-
-//	this along with its accompanying method in the travel repo broke my code so I have commented it out - CS 04/13
+    
+ //	this along with its accompanying method in the travel repo broke my code so I have commented it out - CS 04/13
     
 //    @GetMapping("/trips/destination")
 //    public List<Trip> getTripsByDestination(@RequestParam String destination) {

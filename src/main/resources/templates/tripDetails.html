@@ -1,489 +1,483 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-        <title>Trip Details</title>
-        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-              rel="stylesheet">
-        <script crossorigin="anonymous"
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                <h1 class="h1">
-                    <a class="navbar-brand align-content-center" href="/index.html">
-                        Adventure Travel
-                    </a>
-                </h1>
-            </div>
-        </nav>
-        <div class="container my-5">
-            <form id="form" th:object="${newTrip}" th:action="@{/update/{id}(id=${newTrip.getTripId()})}" method="post">
-                <input style="display: none" th:field="*{tripId}">
-                <h1 class="h1">Trip Details</h1>
-                <div class="row">
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">@</span>
-                            <div class="form-floating">
-                                <input class="form-control" id="tripTitle" placeholder="Title"
-                                       type="text" name="tripTitle" th:field="*{title}">
-                                <label for="tripTitle">Title Of Trip</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">@</span>
-                            <div class="form-floating">
-                                <input class="form-control" id="tripNumPeople" placeholder="Number Of People"
-                                       type="number" name="tripNumPeople" th:field="*{numGuests}">
-                                <label for="tripNumPeople">Number Of People</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">$</span>
-                            <div class="form-floating">
-                                <input aria-label="Amount (to the nearest dollar)" class="form-control" id="tripRate"
-                                       readonly type="text" name="tripRate" th:field="*{totalPrice}">
-                                <label for="tripRate">Total Price</label>
-                            </div>
-                            <span class="input-group-text">.00</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- TODO: revisit person section thymeleaf as accessing the list is different from embedded classes - CS 04/13  -->
-                <div class="accordion" id="accordionPanelsStayOpenExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button aria-controls="panelsStayOpen-collapseOne" aria-expanded="true"
-                                    class="accordion-button"
-                                    data-bs-target="#panelsStayOpen-collapseOne" data-bs-toggle="collapse"
-                                    type="button">
-                                Person Details
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse show" id="panelsStayOpen-collapseOne">
-                            <div class="accordion-body">
-                                <section class="row">
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personFirstName"
-                                                       placeholder="First Name"
-                                                       type="text" name="personFirstName">
-                                                <label for="personFirstName">First Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personLastName" placeholder="Last Name"
-                                                       type="text" name="personLastName">
-                                                <label for="personLastName">Last Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personBirthdate" placeholder="Birthdate"
-                                                       type="date" name="personBirthdate">
-                                                <label for="personBirthdate">Birthdate</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personAddress"
-                                                       placeholder="Street Address"
-                                                       type="text" name="personAddress">
-                                                <label for="personAddress">Street Address</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personCity" placeholder="City"
-                                                       type="text" name="personCity">
-                                                <label for="personCity">City</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personState" placeholder="State"
-                                                       type="text" name="personState">
-                                                <label for="personState">State</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personEmail" placeholder="Email"
-                                                       type="email" name="personEmail">
-                                                <label for="personEmail">Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personZip" placeholder="ZIP"
-                                                       type="text" name="personZip">
-                                                <label for="personZip">ZIP</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="personPhone" placeholder="Phone No."
-                                                       type="tel" name="personPhone">
-                                                <label for="personPhone">Phone No.</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button aria-controls="panelsStayOpen-collapseTwo" aria-expanded="false"
-                                    class="accordion-button collapsed"
-                                    data-bs-target="#panelsStayOpen-collapseTwo" data-bs-toggle="collapse"
-                                    type="button">
-                                Destination Details
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo">
-                            <div class="accordion-body">
-                                <section class="row">
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <select aria-label="Floating label select example" class="form-select"
-                                                    id="destinationSelect" name="destinationSelect" th:field="*{destination.destinationName}">
-                                                <option selected value="default">Select Your Destination...</option>
-                                                <option value="opt1">Option 1</option>
-                                                <option value="opt2">Option 2</option>
-                                                <option value="opt3">Option 3</option>
-                                            </select>
-                                            <label for="destinationSelect">Destinations</label>
-                                        </div>
-                                      <!--   <div class="form-floating mb-3">
+
+<head>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<title>Trip Details</title>
+	<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
+	<script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+	<nav class="navbar bg-body-tertiary">
+		<div class="container-fluid">
+			<h1 class="h1">
+				<a class="navbar-brand align-content-center" href="/index.html">
+					Adventure Travel
+				</a>
+			</h1>
+		</div>
+	</nav>
+	<div class="container my-5">
+		<form id="form" th:object="${newTrip}" th:action="@{/update/{id}(id=${newTrip.getTripId()})}" method="post">
+			<input style="display: none" th:field="*{tripId}">
+			<h1 class="h1">Trip Details</h1>
+			<div class="row">
+				<div class="col">
+					<div class="input-group mb-3">
+						<span class="input-group-text">@</span>
+						<div class="form-floating">
+							<input class="form-control" id="tripTitle" placeholder="Title" type="text" name="tripTitle"
+								th:field="*{title}">
+							<label for="tripTitle">Title Of Trip</label>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="input-group mb-3">
+						<span class="input-group-text">@</span>
+						<div class="form-floating">
+							<input class="form-control" id="tripNumPeople" placeholder="Number Of People" type="number"
+								name="tripNumPeople" th:field="*{numGuests}">
+							<label for="tripNumPeople">Number Of People</label>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="input-group mb-3">
+						<span class="input-group-text">$</span>
+						<div class="form-floating">
+							<input aria-label="Amount (to the nearest dollar)" class="form-control" id="tripRate"
+								readonly type="text" name="tripRate" th:field="*{totalPrice}">
+							<label for="tripRate">Total Price</label>
+						</div>
+						<span class="input-group-text">.00</span>
+					</div>
+				</div>
+			</div>
+			<!-- TODO: revisit person section thymeleaf as accessing the list is different from embedded classes - CS 04/13  -->
+			<div class="accordion" id="accordionPanelsStayOpenExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button aria-controls="panelsStayOpen-collapseOne" aria-expanded="true" class="accordion-button"
+							data-bs-target="#panelsStayOpen-collapseOne" data-bs-toggle="collapse" type="button">
+							Person Details
+						</button>
+					</h2>
+					<div class="accordion-collapse collapse show" id="panelsStayOpen-collapseOne">
+						<div class="accordion-body">
+							<section class="row">
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personFirstName" placeholder="First Name"
+												type="text" name="personFirstName" th:field="*{person.firstName}">
+											<label for="personFirstName">First Name</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personLastName" placeholder="Last Name"
+												type="text" name="personLastName" th:field="*{person.lastName}">
+											<label for="personLastName">Last Name</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personBirthdate" placeholder="Birthdate"
+												type="date" name="personBirthdate" th:field="*{person.birthday}">
+											<label for="personBirthdate">Birthdate</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personAddress" placeholder="Street Address"
+												type="text" name="personAddress" th:field="*{person.address}">
+											<label for="personAddress">Street Address</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personCity" placeholder="City" type="text"
+												name="personCity" th:field="*{person.city}">
+											<label for="personCity">City</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personState" placeholder="State" type="text"
+												name="personState" th:field="*{person.State}">
+											<label for="personState">State</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personEmail" placeholder="Email"
+												type="email" name="personEmail" th:field="*{person.email}">
+											<label for="personEmail">Email</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personZip" placeholder="ZIP" type="text"
+												name="personZip" th:field="*{person.zip}">
+											<label for="personZip">ZIP</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="personPhone" placeholder="Phone No."
+												type="tel" name="personPhone" th:field="*{person.phoneNo}">
+											<label for="personPhone">Phone No.</label>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button aria-controls="panelsStayOpen-collapseTwo" aria-expanded="false"
+							class="accordion-button collapsed" data-bs-target="#panelsStayOpen-collapseTwo"
+							data-bs-toggle="collapse" type="button">
+							Destination Details
+						</button>
+					</h2>
+					<div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo">
+						<div class="accordion-body">
+							<section class="row">
+								<div class="col">
+									<div class="form-floating mb-3">
+										<table th:each="destination : ${listDestination}">
+											<tr>
+												<td></td>
+											</tr>
+
+										</table>
+										<!-- 
+                                        	 th:text="${destination.getDestinationName()}" -->
+										<select th:field="*{destination.destinationName}"
+											aria-label="Floating label select example" class="form-select"
+											id="destinationSelect" name="destinationSelect"
+											th:field="*{destination.destinationName}">
+											<option selected value="default">Select Your Destination...</option>
+											<!--      <option th:each="destination : ${listDestination}" th:value="${destinationId}" th:text="${destinationName}" th:field="*{destination.destinationId}" /> -->
+											<option value="opt1">Option 1</option>
+											<option value="opt2">Option 2</option>
+											<option value="opt3">Option 3</option>
+										</select>
+										<label for="destinationSelect">Destinations</label>
+									</div>
+									<!--   <div class="form-floating mb-3">
                                             <input class="form-control-plaintext" id="destinationName"
                                                    placeholder="Destination"
                                                    type="text" value="Option 1" name="destinationName">
                                             <label for="destinationName">Destination</label>
                                         </div> -->
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="destinationType"
-                                                   placeholder="Type"
-                                                   type="text" value="Type" name="destinationType" th:field="*{destination.destinationType}">
-                                            <label for="destinationType">Type</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="destinationCity"
-                                                   placeholder="City"
-                                        		       type="text" value="City" name="destinationCity" th:field="*{destination.destinationCity}">
-                                            <label for="destinationCity">City</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="destinationState"
-                                                   placeholder="State"
-                                               
-                                                   type="text" value="State" name="destinationState" th:field="*{destination.destinationState}">
-                                            <label for="destinationState">State</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="destinationCountry"
-                                                   placeholder="Country"
-                                                   type="text" value="Country" name="destinationCountry" th:field="*{destination.destinationCountry}">
-                                            <label for="destinationCountry">Country</label>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button aria-controls="panelsStayOpen-collapseThree" aria-expanded="false"
-                                    class="accordion-button collapsed"
-                                    data-bs-target="#panelsStayOpen-collapseThree" data-bs-toggle="collapse"
-                                    type="button">
-                                Lodging Details
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="panelsStayOpen-collapseThree">
-                            <div class="accordion-body">
-                                <section class="row">
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="lodgingStartDate"
-                                                       placeholder="Start Date"
-                                                       type="date" name="lodgingStartDate" th:field="*{lodging.checkInDate}">
-                                                <label for="lodgingStartDate">Start Date</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="lodgingEndDate" placeholder="End Date"
-                                                       type="date" name="lodgingEndDate" th:field="*{lodging.checkOutDate}">
-                                                <label for="lodgingEndDate">End Date</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="lodgingRewardsNo"
-                                                       placeholder="Rewards No."
-                                                       type="text" name="lodgingRewardsNo" th:field="*{lodging.lodgingRewardsNo}">
-                                                <label for="lodgingRewardsNo">Rewards No.</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <select aria-label="Floating label select example" class="form-select"
-                                                    id="lodgingSelect" name="lodgingSelect" th:field="*{lodging.lodgingName}">
-                                                <option selected value="default">Select Your Lodging...</option>
-                                                <option value="opt1">Option 1</option>
-                                                <option value="opt2">Option 2</option>
-                                                <option value="opt3">Option 3</option>
-                                            </select>
-                                            <label for="lodgingSelect">Lodgings</label>
-                                        </div>
-                                        <!-- <div class="form-floating mb-3">
+									<div class="form-floating mb-3">
+										<input class="form-control" id="destinationType" placeholder="Type" type="text"
+											value="Type" name="destinationType"
+											th:field="*{destination.destinationType}">
+										<label for="destinationType">Type</label>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-floating mb-3">
+										<input class="form-control" id="destinationCity" placeholder="City" type="text"
+											value="City" name="destinationCity"
+											th:field="*{destination.destinationCity}">
+										<label for="destinationCity">City</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="destinationState" placeholder="State"
+											type="text" value="State" name="destinationState"
+											th:field="*{destination.destinationState}">
+										<label for="destinationState">State</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="destinationCountry" placeholder="Country"
+											type="text" value="Country" name="destinationCountry"
+											th:field="*{destination.destinationCountry}">
+										<label for="destinationCountry">Country</label>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button aria-controls="panelsStayOpen-collapseThree" aria-expanded="false"
+							class="accordion-button collapsed" data-bs-target="#panelsStayOpen-collapseThree"
+							data-bs-toggle="collapse" type="button">
+							Lodging Details
+						</button>
+					</h2>
+					<div class="accordion-collapse collapse" id="panelsStayOpen-collapseThree">
+						<div class="accordion-body">
+							<section class="row">
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="lodgingStartDate" placeholder="Start Date"
+												type="date" name="lodgingStartDate" th:field="*{lodging.checkInDate}">
+											<label for="lodgingStartDate">Start Date</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="lodgingEndDate" placeholder="End Date"
+												type="date" name="lodgingEndDate" th:field="*{lodging.checkOutDate}">
+											<label for="lodgingEndDate">End Date</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="lodgingRewardsNo" placeholder="Rewards No."
+												type="text" name="lodgingRewardsNo"
+												th:field="*{lodging.lodgingRewardsNo}">
+											<label for="lodgingRewardsNo">Rewards No.</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-floating mb-3">
+										<select aria-label="Floating label select example" class="form-select"
+											id="lodgingSelect" name="lodgingSelect" th:field="*{lodging.lodgingName}">
+											<option selected value="default">Select Your Lodging...</option>
+											<option value="opt1">Option 1</option>
+											<option value="opt2">Option 2</option>
+											<option value="opt3">Option 3</option>
+										</select>
+										<label for="lodgingSelect">Lodgings</label>
+									</div>
+									<!-- <div class="form-floating mb-3">
                                             <input class="form-control-plaintext" id="lodgingName"
                                                    placeholder="Lodging"
                                                    type="text" value="Option 1" name="lodgingName">
                                             <label for="lodgingName">Lodging</label>
                                         </div> -->
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingType"
-                                                   placeholder="Type"
-                                                 
-                                                   type="text" value="Type" name="lodgingType" th:field="*{lodging.lodgingType}">
-                                            <label for="lodgingType">Type</label>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">$</span>
-                                            <div class="form-floating">
-                                                <input aria-label="Amount (to the nearest dollar)" class="form-control"
-                                                       id="lodgingRate"
-                                                       type="text" name="lodgingRate" th:field="*{lodging.lodgingRate}">
-                                                <label for="lodgingRate">Rate</label>
-                                            </div>
-                                            <span class="input-group-text">.00</span>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingCapacity"
-                                                   placeholder="#"
-                                                  
-                                                   type="number" value="Max Capacity" name="lodgingCapacity" th:field="*{lodging.maxCapacity}">
-                                            <label for="lodgingCapacity">Max Capacity</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingAddress"
-                                                   placeholder="Street Address"
-                                                  
-                                                   type="text" value="Street Address" name="lodgingAddress" th:field="*{lodging.lodgingAddress}">
-                                            <label for="lodgingAddress">Street Address</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingCity"
-                                                   placeholder="City"
-                                                  
-                                                   type="text" value="City" name="lodgingCity" th:field="*{lodging.lodgingCity}">
-                                            <label for="lodgingCity">City</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingState"
-                                                   placeholder="State"
-                                                  
-                                                   type="text" value="State" name="lodgingState" th:field="*{lodging.lodgingState}">
-                                            <label for="lodgingState">State</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingZip"
-                                                   placeholder="ZIP"
-                                                   type="text" value="ZIP" name="lodgingZip" th:field="*{lodging.lodgingZip}">
-                                            <label for="lodgingZip">ZIP</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="lodgingCountry"
-                                                   placeholder="Country"
-                                                   type="text" value="Country" name="lodgingCountry" th:field="*{lodging.lodgingCountry}">
-                                            <label for="lodgingCountry">Country</label>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button aria-controls="panelsStayOpen-collapseFour" aria-expanded="false"
-                                    class="accordion-button collapsed"
-                                    data-bs-target="#panelsStayOpen-collapseFour" data-bs-toggle="collapse"
-                                    type="button">
-                                Car Rental Details
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="panelsStayOpen-collapseFour">
-                            <div class="accordion-body">
-                                <section class="row">
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="carRentalPickUpDate"
-                                                       placeholder="Pick Up Date"
-                                                       type="date" name="carRentalPickUpDate" th:field="*{carRental.pickUpDate}">
-                                                <label for="carRentalPickUpDate">Pick Up Date</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="carRentalDropOffDate"
-                                                       placeholder="Drop Off Date"
-                                                       type="date" name="carRentalDropOffDate" th:field="*{carRental.dropOffDate}">
-                                                <label for="carRentalDropOffDate">Drop Off Date</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-floating mb-3">
-                                            <select aria-label="Floating label select example" class="form-select"
-                                                    id="carRentalSelect" name="carRentalSelect" th:field="*{carRental.model}">
-                                                <option selected value="default">Select Your Model...</option>
-                                                <option value="opt1">Option 1</option>
-                                                <option value="opt2">Option 2</option>
-                                                <option value="opt3">Option 3</option>
-                                            </select>
-                                            <label for="carRentalSelect">Models</label>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">$</span>
-                                            <div class="form-floating">
-                                                <input aria-label="Amount (to the nearest dollar)" class="form-control"
-                                                       id="carRentalRate"
-                                                       type="text" name="carRentalRate" th:field="*{carRental.carRentalRate}">
-                                                <label for="carRentalRate">Rate</label>
-                                            </div>
-                                            <span class="input-group-text">.00</span>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button aria-controls="panelsStayOpen-collapseFive" aria-expanded="false"
-                                    class="accordion-button collapsed"
-                                    data-bs-target="#panelsStayOpen-collapseFive" data-bs-toggle="collapse"
-                                    type="button">
-                                Flight Details
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse" id="panelsStayOpen-collapseFive">
-                            <div class="accordion-body">
-                                <section class="row">
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="flightAirline"
-                                                       placeholder="Airline"
-                                                       type="text" name="flightAirline" th:field="*{flights.airline}">
-                                                <label for="flightAirline">Airline</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="flightDeparture" placeholder="Departure"
-                                                       type="datetime-local" name="flightDeparture" th:field="*{flights.departure}">
-                                                <label for="flightDeparture">Departure</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="flightArrival" placeholder="Arrival"
-                                                       type="datetime-local" name="flightArrival" th:field="*{flights.arrival}">
-                                                <label for="flightArrival">Arrival</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="flightFrequentFlyerNo"
-                                                       placeholder="Frequent Flyer No."
-                                                       type="text" name="flightFrequentFlyerNo" th:field="*{flights.frequentFlyerNo}">
-                                                <label for="flightFrequentFlyerNo">Frequent Flyer No.</label>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">@</span>
-                                            <div class="form-floating">
-                                                <input class="form-control" id="flightNumSeats"
-                                                       placeholder="Number Of Seats"
-                                                       type="number" name="flightNumSeats" th:field="*{flights.numSeats}">
-                                                <label for="flightNumSeats">Number Of Seats</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <select aria-label="Floating label select example" class="form-select"
-                                                    id="flightSelect" name="flightSelect" th:field="*{flights.seatingClass}">
-                                                <option selected value="default">Select Your Class...</option>
-                                                <option value="economy">Economy</option>
-                                                <option value="business">Business</option>
-                                                <option value="first">First</option>
-                                            </select>
-                                            <label for="flightSelect">Class</label>
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">$</span>
-                                            <div class="form-floating">
-                                                <input aria-label="Amount (to the nearest dollar)" class="form-control"
-                                                       id="flightRate"
-                                                       type="text" name="flightRate" th:field="*{flights.flightRate}">
-                                                <label for="flightRate">Rate</label>
-                                            </div>
-                                            <span class="input-group-text">.00</span>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div aria-label="Basic outlined example" class="btn-group mt-3" role="group">
-                    <button class="btn btn-outline-primary" type="submit" name="submit">Submit</button>
-                    <button class="btn btn-outline-primary" type="reset" name="reset">Reset</button>
-                </div>
-            </form>
-        </div>
-    </body>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingType" placeholder="Type" type="text"
+											value="Type" name="lodgingType" th:field="*{lodging.lodgingType}">
+										<label for="lodgingType">Type</label>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">$</span>
+										<div class="form-floating">
+											<input aria-label="Amount (to the nearest dollar)" class="form-control"
+												id="lodgingRate" type="text" name="lodgingRate"
+												th:field="*{lodging.lodgingRate}">
+											<label for="lodgingRate">Rate</label>
+										</div>
+										<span class="input-group-text">.00</span>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingCapacity" placeholder="#" type="number"
+											value="Max Capacity" name="lodgingCapacity"
+											th:field="*{lodging.maxCapacity}">
+										<label for="lodgingCapacity">Max Capacity</label>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingAddress" placeholder="Street Address"
+											type="text" value="Street Address" name="lodgingAddress"
+											th:field="*{lodging.lodgingAddress}">
+										<label for="lodgingAddress">Street Address</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingCity" placeholder="City" type="text"
+											value="City" name="lodgingCity" th:field="*{lodging.lodgingCity}">
+										<label for="lodgingCity">City</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingState" placeholder="State" type="text"
+											value="State" name="lodgingState" th:field="*{lodging.lodgingState}">
+										<label for="lodgingState">State</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingZip" placeholder="ZIP" type="text"
+											value="ZIP" name="lodgingZip" th:field="*{lodging.lodgingZip}">
+										<label for="lodgingZip">ZIP</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input class="form-control" id="lodgingCountry" placeholder="Country"
+											type="text" value="Country" name="lodgingCountry"
+											th:field="*{lodging.lodgingCountry}">
+										<label for="lodgingCountry">Country</label>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button aria-controls="panelsStayOpen-collapseFour" aria-expanded="false"
+							class="accordion-button collapsed" data-bs-target="#panelsStayOpen-collapseFour"
+							data-bs-toggle="collapse" type="button">
+							Car Rental Details
+						</button>
+					</h2>
+					<div class="accordion-collapse collapse" id="panelsStayOpen-collapseFour">
+						<div class="accordion-body">
+							<section class="row">
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="carRentalPickUpDate"
+												placeholder="Pick Up Date" type="date" name="carRentalPickUpDate"
+												th:field="*{carRental.pickUpDate}">
+											<label for="carRentalPickUpDate">Pick Up Date</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="carRentalDropOffDate"
+												placeholder="Drop Off Date" type="date" name="carRentalDropOffDate"
+												th:field="*{carRental.dropOffDate}">
+											<label for="carRentalDropOffDate">Drop Off Date</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-floating mb-3">
+										<select aria-label="Floating label select example" class="form-select"
+											id="carRentalSelect" name="carRentalSelect" th:field="*{carRental.model}">
+											<option selected value="default">Select Your Model...</option>
+											<option value="opt1">Option 1</option>
+											<option value="opt2">Option 2</option>
+											<option value="opt3">Option 3</option>
+										</select>
+										<label for="carRentalSelect">Models</label>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">$</span>
+										<div class="form-floating">
+											<input aria-label="Amount (to the nearest dollar)" class="form-control"
+												id="carRentalRate" type="text" name="carRentalRate"
+												th:field="*{carRental.carRentalRate}">
+											<label for="carRentalRate">Rate</label>
+										</div>
+										<span class="input-group-text">.00</span>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button aria-controls="panelsStayOpen-collapseFive" aria-expanded="false"
+							class="accordion-button collapsed" data-bs-target="#panelsStayOpen-collapseFive"
+							data-bs-toggle="collapse" type="button">
+							Flight Details
+						</button>
+					</h2>
+					<div class="accordion-collapse collapse" id="panelsStayOpen-collapseFive">
+						<div class="accordion-body">
+							<section class="row">
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="flightAirline" placeholder="Airline"
+												type="text" name="flightAirline" th:field="*{flights.airline}">
+											<label for="flightAirline">Airline</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="flightDeparture" placeholder="Departure"
+												type="datetime-local" name="flightDeparture"
+												th:field="*{flights.departure}">
+											<label for="flightDeparture">Departure</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="flightArrival" placeholder="Arrival"
+												type="datetime-local" name="flightArrival"
+												th:field="*{flights.arrival}">
+											<label for="flightArrival">Arrival</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="flightFrequentFlyerNo"
+												placeholder="Frequent Flyer No." type="text"
+												name="flightFrequentFlyerNo" th:field="*{flights.frequentFlyerNo}">
+											<label for="flightFrequentFlyerNo">Frequent Flyer No.</label>
+										</div>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">@</span>
+										<div class="form-floating">
+											<input class="form-control" id="flightNumSeats"
+												placeholder="Number Of Seats" type="number" name="flightNumSeats"
+												th:field="*{flights.numSeats}">
+											<label for="flightNumSeats">Number Of Seats</label>
+										</div>
+									</div>
+									<div class="form-floating mb-3">
+										<select aria-label="Floating label select example" class="form-select"
+											id="flightSelect" name="flightSelect" th:field="*{flights.seatingClass}">
+											<option selected value="default">Select Your Class...</option>
+											<option value="economy">Economy</option>
+											<option value="business">Business</option>
+											<option value="first">First</option>
+										</select>
+										<label for="flightSelect">Class</label>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text">$</span>
+										<div class="form-floating">
+											<input aria-label="Amount (to the nearest dollar)" class="form-control"
+												id="flightRate" type="text" name="flightRate"
+												th:field="*{flights.flightRate}">
+											<label for="flightRate">Rate</label>
+										</div>
+										<span class="input-group-text">.00</span>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div aria-label="Basic outlined example" class="btn-group mt-3" role="group">
+				<button class="btn btn-outline-primary" type="submit" name="submit">Submit</button>
+				<button class="btn btn-outline-primary" type="reset" name="reset">Reset</button>
+			</div>
+		</form>
+	</div>
+</body>
+
 </html>

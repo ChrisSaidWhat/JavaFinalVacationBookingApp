@@ -9,8 +9,10 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,9 +31,9 @@ public class Trip {
 	@GeneratedValue
 	private Long tripId;
 	private String title;
-	@Embedded
+	@ManyToOne
 	private Destination destination;
-	@OneToMany
+	@ManyToOne
 	private List<Person> person;
 	//	these do not appear on the form - CS 04/13
 //	private LocalDate leaveDate;
