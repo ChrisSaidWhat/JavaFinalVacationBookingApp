@@ -164,23 +164,10 @@
 							<section class="row">
 								<div class="col">
 									<div class="form-floating mb-3">
-										<table th:each="destination : ${listDestination}">
-											<tr>
-												<td></td>
-											</tr>
-
-										</table>
-										<!-- 
-                                        	 th:text="${destination.getDestinationName()}" -->
-										<select th:field="*{destination.destinationName}"
+										<select th:field="*{destination}"
 											aria-label="Floating label select example" class="form-select"
-											id="destinationSelect" name="destinationSelect"
-											th:field="*{destination.destinationName}">
-											<option selected value="default">Select Your Destination...</option>
-											<!--      <option th:each="destination : ${listDestination}" th:value="${destinationId}" th:text="${destinationName}" th:field="*{destination.destinationId}" /> -->
-											<option value="opt1">Option 1</option>
-											<option value="opt2">Option 2</option>
-											<option value="opt3">Option 3</option>
+											id="destinationSelect" name="destinationSelect">
+										    <option th:each="destination : ${destinations}" th:value="${destination.destinationId}" th:text="${destination.destinationName}" />
 										</select>
 										<label for="destinationSelect">Destinations</label>
 									</div>

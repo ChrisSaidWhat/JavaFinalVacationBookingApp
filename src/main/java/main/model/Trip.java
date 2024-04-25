@@ -33,8 +33,8 @@ public class Trip {
 	private String title;
 	@ManyToOne
 	private Destination destination;
-	@ManyToOne
-	private List<Person> person;
+	@Embedded
+	private Person person;
 	//	these do not appear on the form - CS 04/13
 //	private LocalDate leaveDate;
 //	private LocalDate returnDate;

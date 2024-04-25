@@ -11,7 +11,7 @@ import main.model.Person;
  * Apr 24, 2024
  */
 
-@Repository
-public interface PersonRepository extends JpaRepository <Person, Long> {
-
-}
+//@Repository
+//public interface PersonRepository extends JpaRepository <Person, Long> {
+//
+//}

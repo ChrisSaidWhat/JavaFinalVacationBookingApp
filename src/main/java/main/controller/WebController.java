@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import main.model.Person;
 import main.model.Trip;
 import main.repository.DestinationRepository;
-import main.repository.PersonRepository;
+//import main.repository.PersonRepository;
 import main.repository.TravelRepository;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -38,8 +38,8 @@ public class WebController {
 	@Autowired
 	DestinationRepository destRepo;
 	
-	@Autowired
-	PersonRepository personRepo;
+//	@Autowired
+//	PersonRepository personRepo;
 	
 	//	the fix in the line below allows us to not have to use an index.html file - CS 04/13
 	@GetMapping({"/", "/viewAll"})
@@ -55,9 +55,9 @@ public class WebController {
 	@GetMapping("/tripDetails")
 	public String addNewBooking(Model model) {
 		Trip trip = new Trip();
-		Person person = new Person();
+//		Person person = new Person();
 		model.addAttribute("newTrip", trip);
-		model.addAttribute("listDestinations", destRepo.findAll());
+		model.addAttribute("destinations", destRepo.findAll());
 		return "tripDetails";
 	}
 	
@@ -111,6 +111,7 @@ public class WebController {
 		model.addAttribute("newDestination", destination);
 		return "input";
 	}
+	
 	@GetMapping("/editLodging{id}")
 	public String showUpdateLodging(@PathVariable("id") long id, Model model) {
 		Trip lodging = repo.findById(id).orElse(null);
@@ -127,19 +128,14 @@ public class WebController {
 		return "input";
 	}
 	
-	@PostMapping("/update/{id}")
+	@PostMapping({"/update/", "/update/{id}"})
 	public String reviseBooking(Trip trip, Model model) {
 		//need to un-reserve dates/times for CarRental/Flights/Lodging and change the reserve dates
 		//if they want to change a CarRental/Flights/Lodging
-			//go into each individually-unreserve and then choose new dates?
+		//go into each individually-unreserve and then choose new dates?
 		
-		repo.save(trip);
-		return "redirect:/viewTrip";
-	}
-
-	@PostMapping("/update")
-	public String createBooking(Trip trip, Model model) {
-		return reviseBooking(trip, model);
+		var savedTrip = repo.save(trip);
+		return "redirect:/view/%s".formatted(savedTrip.getTripId());
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -155,6 +151,7 @@ public class WebController {
 		Trip trip = repo.findById(id)
 				.orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find trip %d".formatted(id)));
 		model.addAttribute("newTrip", trip);
+		model.addAttribute("destinations", destRepo.findAll());
 		return "tripDetails";
 	}
 

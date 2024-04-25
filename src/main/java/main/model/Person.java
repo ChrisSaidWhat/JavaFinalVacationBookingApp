@@ -14,15 +14,15 @@ import lombok.NoArgsConstructor;
  * Apr 3, 2024
  */
 
-@Entity
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
 	
 	//Attributes
-	@Id
-	@GeneratedValue
+//	@Id
+//	@GeneratedValue
 	private Long guestId;
 	private String firstName;
 	private String lastName;
@@ -33,7 +33,7 @@ public class Person {
 	private String state;
 	private String zip;
 	private int phoneNo;
-	@OneToMany(mappedBy="person")
-	private List<Trip> trip;
+//	@OneToMany(mappedBy="person")
+//	private List<Trip> trip;
 
 }
