@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,19 +20,20 @@ import lombok.NoArgsConstructor;
  * Apr 4, 2024
  */
 
-@Embeddable
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Destination {
-
-	private int destinationId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long destinationId;
 	private String destinationName;
 	private String destinationType;
 	private String destinationCity;
 	private String destinationState;
 	private String destinationCountry;
-//	@OneToMany
-//	private List<Trip> trips;
+	@OneToMany
+	private List<Trip> trips;
 	
 }
